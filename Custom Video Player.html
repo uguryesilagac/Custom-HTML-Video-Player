@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script src="app.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="Images/icon.png">
+    <title>Custom Video Player</title>
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="VideoPlayer">
+                <div class="spinner"></div>
+                <video preload="metadata" class="MainVideo" src="Videos/Video.mp4">
+                    <track class="Track1" label="English" kind="subtitles" src="Subtitles/sample1.vtt">
+                    <track class="Track2" label="Italian" kind="subtitles" src="Subtitles/sample2.vtt">
+                </video>
+                <p class="captionsText"></p>
+                <div class="thumbnail"></div>
+                <div class="ProgressAreaTime">00:00:00</div>
+                <div class="Controls">
+                    <div class="ProgressArea">
+                        <div class="ProgressBar ThumbForProgressAreaBar"></div>
+                        <div class="BufferedProgressBar"></div>
+                    </div>
+                    <div class="Controls-List">
+                        <div class="Controls-Left">
+                            <span class="material-symbols-outlined replay_10" title="10 Second Backward">
+                                replay_10
+                            </span>
+                            <span class="material-symbols-outlined play_arrow">
+                                play_arrow
+                            </span>
+                            <span class="material-symbols-outlined forward_10" title="10 Second Forward">
+                                forward_10
+                            </span>
+                        <span class="material-symbols-outlined volume" title="Volume">
+                            volume_up
+                        </span>
+                        <div class="VolumeRangeArea">
+                            <div class="volumeProgressBar ThumbChangeOfVolume">
+                                <div class="PersentageVolume">70</div>
+                            </div>
+                        </div>
+                            <div class="Timer">
+                                <span class="current" title="Current Time">00:00:00</span> / <span class="duration" title="Video Duration">00:00:00</span>
+                            </div>
+                        </div>
+                        <div class="Controls-Right">
+                            <span class="material-symbols-outlined autoplay" title="Auto Play">
+                            </span>
+                            <span class="material-symbols-outlined closed_caption" title="Subtitle">
+                                closed_caption
+                            </span>
+                            <span class="material-symbols-outlined settingsButton" title="Settings">
+                                settings
+                            </span>
+                            <span class="material-symbols-outlined picture_in_picture_alt" title="Picture in Picture">
+                                picture_in_picture_alt
+                            </span>
+                            <span class="material-symbols-outlined fullscreen" title="Full Screen">
+                                fullscreen
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="Settings">
+                    <div class="settingsHome">
+                        <ul>
+                            <li class="ForSpeedSection" title="Playback Speed">
+                                <span class="material-symbols-outlined">
+                                    speed
+                                </span>
+                                <span>Playback Speed</span>
+                                <span class="material-symbols-outlined">
+                                    arrow_forward_ios
+                                </span>
+                            </li>
+                            <li class="ForQualitySection" title="Video Kalitesi">
+                                <span class="material-symbols-outlined">
+                                    hd
+                                </span>
+                                <span>Video Quality</span>
+                                <span class="material-symbols-outlined">
+                                    arrow_forward_ios
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="PlayBack">
+                        <span class="SpeedForTitle">
+                            <span class="material-symbols-outlined BackForSettingsHome" title="Menu">
+                                arrow_back
+                            </span>
+                            <span>Playback Speed</span>
+                        </span>
+                        <ul>
+                            <li data-speed="0.25">0.25</li>
+                            <li data-speed="0.5">0.5</li>
+                            <li data-speed="0.75">0.75</li>
+                            <li data-speed="1" class="active">Normal</li>
+                            <li data-speed="1.25">1.25</li>
+                            <li data-speed="1.5">1.50</li>
+                            <li data-speed="1.75">1.75</li>
+                            <li data-speed="2">2</li>
+                        </ul>
+                    </div>
+                    <div class="Quality">
+                        <span class="QualityForTitle">
+                            <span class="material-symbols-outlined BackForSettingsHome" title="Menu">
+                                arrow_back
+                            </span>
+                            <span> Video Quality</span>
+                        </span>
+                        <ul>
+                            <li class="active">1080p</li>
+                            <li>720p</li>
+                            <li>480p</li>
+                            <li>360p</li>
+                            <li>144p</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="toolTipForSettings"></div>
+                <div class="captions">
+                    <span class="ChooseSubtitle">Subtitles</span>
+                    <ul class="SubtitleList">
+
+                    </ul>
+                </div>
+                <div class="toolTipForCaptions"></div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

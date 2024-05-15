@@ -1,0 +1,680 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+:root {
+    --SetFontFamily: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+span,
+input {
+    cursor: pointer;
+    font-family: var(--SetFontFamily);
+    color: white;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+.material-symbols-outlined {
+    user-select: none;
+    -webkit-user-select: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 8px;
+    margin-right: 5px;
+}
+
+.material-symbols-outlined:hover {
+    color: #a86ffe;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1.7%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 900px;
+}
+
+.MainVideo {
+    cursor: pointer;
+}
+
+.container .VideoPlayer {
+    position: relative;
+    top: 5px;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.container .VideoPlayer .MainVideo {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    outline: none;
+}
+
+.VideoPlayer .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 70px;
+    height: 70px;
+    border: 5px solid #fff;
+    z-index: 1;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    animation: animateSpinning 1s linear infinite;
+    display: none;
+}
+
+@keyframes animateSpinning {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.container .VideoPlayer .Controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    z-index: 5;
+    transform: translateY(180px);
+}
+
+.container .VideoPlayer .Controls.active {
+    transform: translateY(0);
+}
+
+.VideoPlayer .Controls .ProgressArea {
+    width: 98%;
+    height: 5px;
+    margin: auto;
+    background-color: #f0f0f07c;
+    position: absolute;
+    left: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.VideoPlayer .Controls .ProgressArea:hover {
+    height: 6.5px;
+    top: -1.5px;
+}
+
+.VideoPlayer .Controls .ProgressArea .ProgressBar {
+    position: relative;
+    width: 0%;
+    background: rgb(212, 0, 255);
+    height: inherit;
+    border-radius: inherit;
+}
+
+.VideoPlayer .Controls .ProgressArea .BufferedProgressBar {
+    position: absolute;
+    top: 0;
+    width: 0;
+    background: rgb(206, 206, 206);
+    height: inherit;
+    border-radius: inherit;
+    z-index: -1;
+}
+
+.VideoPlayer .Controls .ProgressArea .ProgressBar.ThumbForProgressAreaBar::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgb(0, 187, 255);
+    cursor: pointer;
+}
+
+.VideoPlayer .Controls .ProgressArea .ProgressBar.ThumbForProgressAreaBar:active::before {
+    width: 13px;
+    height: 13px;
+}
+
+.VideoPlayer .thumbnail {
+    position: absolute;
+    bottom: 39px;
+    left: var(--x);
+    transform: translateY(-50%);
+    background-image: none;
+    background-position-x: 0;
+    background-position-y: 0;
+    width: 167.5px;
+    height: 99.7px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #ffffff;
+    border-radius: 3px;
+    display: none;
+}
+
+.ProgressAreaTime {
+    position: absolute;
+    text-align: center;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: #ffffff;
+    font-size: 15px;
+    background-color: transparent;
+    bottom: 60px;
+    left: var(--x);
+    width: 168px;
+    transform: translateX(-50%);
+    display: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.Controls .Controls-List {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 97%;
+    flex-wrap: nowrap;
+    height: 46px;
+    margin: 0 auto;
+}
+
+.Controls .Controls-List .Controls-Left,
+.Controls .Controls-List .Controls-Right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.replay_10:active {
+    transform: rotate(-55deg);
+    transition: 0.3s;
+}
+
+.forward_10:active {
+    transform: rotate(55deg);
+    transition: 0.3s;
+}
+
+.VolumeRangeArea {
+    height: 8px;
+    border-radius: 3px;
+    width: 100px;
+    background-color: #ffffff74;
+    visibility: hidden;
+    transform: rotate(-90deg);
+    position: relative;
+    bottom: 82px;
+    left: -66px;
+    z-index: 100;
+}
+
+.volumeProgressBar {
+    height: 8.5px;
+    width: 0;
+    background: #fff;
+    position: relative;
+    z-index: 101;
+    border-radius: 3px;
+}
+
+.volumeProgressBar.ThumbChangeOfVolume::before {
+    content: "";
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgb(20, 19, 23);
+    cursor: pointer;
+    z-index: 102;
+}
+
+.ThumbChangeOfVolume:active::before {
+    width: 12px;
+    height: 12px;
+    box-shadow: 0 0 0 6.5px rgba(255, 255, 255, 0.65);
+}
+
+.PersentageVolume {
+    width: 23.5px;
+    height: 23.5px;
+    border-radius: 10%;
+    color: black;
+    background-color: white;
+    transform: rotate(90deg);
+    font-size: 13px;
+    position: relative;
+    text-align: center;
+    font-weight: 680;
+    padding-top: 3.7px;
+    top: -8px;
+    left: 110px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.PersentageVolume::before {
+    content: "";
+    position: absolute;
+    top: 22px;
+    left: 10.5px;
+    margin-left: -5px;
+    border-width: 6.8px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+
+.Controls .Controls-List .Controls-Left .Timer {
+    font-size: 15px;
+    white-space: nowrap;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    left: -100px;
+}
+
+.autoplay {
+    width: 30px;
+    height: 10px;
+    border-radius: 20px;
+    position: relative;
+    margin-right: 8px !important;
+    background-color: #b6b6b6;
+}
+
+.autoplay:hover {
+    color: orange;
+}
+
+.autoplay::before {
+    content: "\e034";
+    position: absolute;
+    left: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 19px;
+    height: 19px;
+    line-height: 17px;
+    font-size: 18px;
+    background-color: #727272;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.autoplay.active::before {
+    content: "\e037";
+    left: 15px;
+    transition: 0.3s;
+    font-size: 23px !important;
+
+}
+
+.settingsHome {
+    position: absolute;
+    right: 30px;
+    bottom: 70px;
+    background: rgba(17, 17, 18, 0.8);
+    width: 200px;
+    height: 87px;
+    color: #fff;
+    z-index: 20;
+    text-align: center;
+    opacity: 0.8;
+    font-size: 17px;
+    display: none;
+    box-sizing: border-box;
+}
+
+.settingsHome .material-symbols-outlined {
+    position: relative;
+    top: 0px;
+}
+
+.settingsHome ul li :nth-child(2) {
+    position: relative;
+    bottom: 6px;
+}
+
+.settingsHome .material-symbols-outlined:hover {
+    color: white;
+}
+
+.settingsHome ul li {
+    padding: 8px;
+}
+
+.settingsHome ul li:hover {
+    background-color: #4f09b7;
+    cursor: pointer;
+}
+
+.toolTipForSettings {
+    position: absolute;
+    left: 87%;
+    top: 84.5%;
+    visibility: hidden;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent rgba(17, 17, 18, 0.65) rgba(17, 17, 18, 0.65);
+    transform: rotate(-45deg);
+}
+
+.PlayBack {
+    overflow-y: scroll;
+    height: 200px;
+    width: 180px;
+    position: absolute;
+    right: 40px;
+    bottom: 70px;
+    text-align: center;
+    color: white;
+    display: none;
+    background: rgba(17, 17, 18, 0.8);
+}
+
+.PlayBack::-webkit-scrollbar {
+    width: 9px;
+    background-color: #006aff;
+}
+
+.PlayBack::-webkit-scrollbar-thumb {
+    background: linear-gradient(#9d00ff, #9e0e3e);
+    cursor: pointer;
+}
+
+.PlayBack::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(#64049f, #72052a);
+}
+
+.PlayBack ul {
+    position: relative;
+    top: 30px;
+}
+
+.PlayBack ul li {
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+    padding: 5px 5px;
+    display: block;
+    font-size: 16px;
+}
+
+.PlayBack ul li:hover {
+    background-color: #4f09b7;
+}
+
+.PlayBack ul .active {
+    background-color: #5d0adb;
+}
+
+.PlayBack ul li.active::before {
+    content: "";
+    font-family: "Metariel Icons";
+    position: absolute;
+    height: 5px;
+    width: 10px;
+    border-bottom: 3.5px solid #fff;
+    border-left: 3.5px solid #fff;
+    left: 40px;
+    top: 9px;
+    transform: rotate(-45deg);
+}
+
+
+.Quality {
+    overflow-y: scroll;
+    height: 207.5px;
+    width: 180px;
+    position: absolute;
+    right: 40px;
+    bottom: 70px;
+    text-align: center;
+    color: white;
+    display: none;
+    background: rgba(17, 17, 18, 0.8);
+}
+
+.Quality::-webkit-scrollbar {
+    width: 9px;
+    background-color: #006aff;
+}
+
+.Quality::-webkit-scrollbar-thumb {
+    background: linear-gradient(#9d00ff, #9e0e3e);
+    cursor: pointer;
+}
+
+.Quality::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(#64049f, #72052a);
+}
+
+.Quality ul {
+    position: relative;
+    top: 30px;
+}
+
+.Quality ul li {
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+    padding: 5px 5px;
+    display: block;
+    font-size: 17px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.Quality ul li:hover {
+    background-color: #4f09b7;
+}
+
+.Quality ul .active {
+    background-color: #5d0adb;
+}
+
+.Quality ul li.active::before {
+    content: "";
+    font-family: "Metariel Icons";
+    position: absolute;
+    height: 5px;
+    width: 10px;
+    border-bottom: 3.5px solid #fff;
+    border-left: 3.5px solid #fff;
+    left: 40px;
+    top: 9px;
+    transform: rotate(-45deg);
+}
+
+.QualityForTitle span:last-child {
+    position: relative;
+    left: -10px;
+}
+
+.SpeedForTitle span:last-child {
+    position: relative;
+    left: -10px;
+}
+
+.QualityForTitle {
+    border-bottom: 2px solid white;
+    font-size: 18.5px;
+    padding: 8px 2px 8px 2px;
+}
+
+.SpeedForTitle {
+    border-bottom: 2px solid white;
+    font-size: 18.5px;
+    padding: 8px 2px 8px 2px;
+}
+
+.BackForSettingsHome {
+    position: relative;
+    top: 4px;
+    left: -8px;
+    width: 30px;
+    height: 30px;
+    padding: 3px;
+    font-size: 23px !important;
+}
+
+.BackForSettingsHome:hover {
+    color: black;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.captionsText {
+    color: #fff;
+    background-color: #00000089;
+    position: absolute;
+    left: 50%;
+    bottom: 7%;
+    height: auto;
+    padding: 7px;
+    width: auto;
+    max-width: 90%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    transition: bottom 0.3s;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 24.5px;
+}
+
+.captions {
+    position: absolute;
+    right: 80px;
+    bottom: 69.5px;
+    background: rgba(17, 17, 18, 0.8);
+    width: 140px;
+    height: 123px;
+    color: #fff;
+    overflow-y: hidden;
+    z-index: 20;
+    text-align: center;
+    opacity: 0.8;
+    display: none;
+}
+
+.toolTipForCaptions {
+    position: absolute;
+    left: 82.5%;
+    top: 84.5%;
+    visibility: hidden;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent rgba(17, 17, 18, 0.65) rgba(17, 17, 18, 0.65);
+    transform: rotate(-45deg);
+}
+
+video::cue {
+    opacity: 0;
+}
+
+.captions::-webkit-scrollbar {
+    width: 8px;
+    background-color: #166be2;
+}
+
+.captions::-webkit-scrollbar-thumb {
+    background: linear-gradient(#9d00ff, #9e0e3e);
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.captions::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(#64049f, #72052a);
+}
+
+.captions span {
+    font-size: 17px !important;
+    font-weight: 400;
+    padding: 8px 0 8px 0;
+    display: block;
+    border-bottom: 1px solid;
+}
+
+.captions ul {
+    position: relative;
+}
+
+.captions ul li {
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+    padding: 5px 5px;
+    display: block;
+    font-size: 16px;
+}
+
+.captions ul li:hover {
+    background-color: #4f09b7;
+}
+
+.captions ul .active {
+    background-color: #5d0adb;
+}
+
+.captions ul li.active::before {
+    content: "";
+    font-family: "Metariel Icons";
+    position: absolute;
+    height: 5px;
+    width: 10px;
+    border-bottom: 3.5px solid #fff;
+    border-left: 3.5px solid #fff;
+    left: 13px;
+    top: 9px;
+    transform: rotate(-45deg);
+}
+
+.settingsButton:hover {
+    transition: 1s;
+    transform: rotate(90deg);
+}
+
+@media (max-width:400px) {
+    .container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .material-symbols-outlined {
+        margin-left: 5px;
+        margin-right: 8px;
+        font-size: 24px;
+    }
+}
